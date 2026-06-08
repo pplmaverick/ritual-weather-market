@@ -193,14 +193,14 @@ function claim(uint256 marketId) external;
 // Read full market state
 function getMarket(uint256 marketId) external view returns (
     string memory city,
-    int256  targetTemp,
+    int256  targetTemp,      // Celsius × 100, same encoding as createMarket
     uint256 bettingDeadline,
     uint256 resolutionTime,
     uint256 totalAbove,
     uint256 totalBelow,
     bool    resolved,
     bool    resultIsAbove,
-    int256  actualTemp
+    int256  actualTemp       // Celsius × 100, set after resolution
 );
 
 // Read a user's bets on a market
@@ -223,7 +223,11 @@ Temperatures are stored as `int256` with two-decimal-place precision (Celsius ×
 -320   →  -3.20°C
 ```
 
-The frontend accepts plain integer or decimal Celsius input (e.g. `20` or `25.5`) and converts to the contract representation automatically. OpenWeather responses are parsed on-chain by `_parseTemp()` in the contract.
+**The contract always expects Celsius × 100.** Pass `2000` to `createMarket()` for a 20°C target, `2555` for 25.55°C.
+
+The frontend UI accepts plain Celsius input (e.g. type `20` for 20°C) and calls `parseTargetTemp()` to multiply by 100 before sending the transaction. If you call the contract directly (cast, script), pass the ×100 value yourself.
+
+OpenWeather responses are parsed on-chain by `_parseTemp()`, which also returns Celsius × 100.
 
 **Payout formula:**
 
