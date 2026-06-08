@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  --ritual-orange: #f97316;
+  --ritual-bg:     #09090b;
+  --ritual-surface:#111113;
+  --ritual-border: #27272a;
+}
+
+body {
+  background: var(--ritual-bg);
+  color: #fafafa;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ritual-bg); }
+::-webkit-scrollbar-thumb { background: var(--ritual-border); border-radius: 2px; }

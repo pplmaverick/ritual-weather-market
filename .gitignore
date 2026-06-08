@@ -1,0 +1,19 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+contracts/out/
+contracts/cache/
+frontend/.next/
+frontend/out/
+
+# OS
+.DS_Store
+
+# Claude Code project memory (contains local session data)
+.claude/
