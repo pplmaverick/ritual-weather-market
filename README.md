@@ -265,7 +265,7 @@ The fee is deducted from the **transaction sender's personal RitualWallet balanc
 
 ## Implementation Notes
 
-Three non-obvious Ritual Chain behaviors encountered during development:
+Four non-obvious Ritual Chain behaviors encountered during development:
 
 **1. RitualWallet fee is charged to `tx.origin` (EOA), not the calling contract**
 
@@ -310,7 +310,31 @@ const deadline = Math.floor(Date.now() / 1000) + hoursUntilDeadline * 3600
 const deadline = Date.now() + hoursUntilDeadline * 3600 * 1000
 ```
 
-Also: wagmi's multicall3 must be explicitly disabled for Ritual Testnet. Leaving the default multicall3 address in the chain config causes wagmi to silently fail all batched `useReadContract` calls (the contract address has no code on Ritual Testnet). Remove `contracts.multicall3` from the chain definition — wagmi falls back to individual `eth_call` per read.
+**4. wagmi multicall3 must be disabled for Ritual Testnet**
+
+wagmi batches all `useReadContract` calls through the [Multicall3](https://www.multicall3.com/) contract by default. Ritual Testnet does not have Multicall3 deployed at the standard address (`0xcA11bde05977b3631167028862bE2a173976CA11`), so every batched read silently returns empty data — no error is thrown, the UI simply shows nothing.
+
+Fix: remove `contracts.multicall3` from the chain definition. wagmi detects its absence and falls back to individual `eth_call` per read hook.
+
+```typescript
+// ✗ default wagmi chain config — multicall3 batch fails silently on Ritual Testnet
+const ritualTestnet = defineChain({
+  id: 1979,
+  // ...
+  contracts: {
+    multicall3: { address: '0xcA11bde05977b3631167028862bE2a173976CA11' },
+  },
+})
+
+// ✓ remove multicall3 — wagmi falls back to individual eth_call per useReadContract
+const ritualTestnet = defineChain({
+  id: 1979,
+  name: 'Ritual Testnet',
+  nativeCurrency: { name: 'RITUAL', symbol: 'RITUAL', decimals: 18 },
+  rpcUrls: { default: { http: ['https://rpc.ritualfoundation.org'] } },
+  // no contracts.multicall3
+})
+```
 
 ---
 
