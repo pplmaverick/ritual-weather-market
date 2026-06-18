@@ -265,7 +265,7 @@ The fee is deducted from the **transaction sender's personal RitualWallet balanc
 
 ## Implementation Notes
 
-Four non-obvious Ritual Chain behaviors encountered during development:
+Five non-obvious Ritual Chain behaviors encountered during development:
 
 **1. RitualWallet fee is charged to `tx.origin` (EOA), not the calling contract**
 
@@ -335,6 +335,48 @@ const ritualTestnet = defineChain({
   // no contracts.multicall3
 })
 ```
+
+**5. Contract verification uses `verify.ritualfoundation.org`**
+
+Neither Sourcify nor the block explorer's API works for Ritual Testnet:
+
+| Service | Result |
+|---|---|
+| Sourcify (`sourcify.dev/server`) | ❌ `Chain 1979 not found` |
+| `explorer.ritualfoundation.org/api` | ❌ Custom Next.js frontend, no standard API |
+| `rpc.ritualfoundation.org/api/verify` | ❌ `{"error":"unknown path"}` |
+| `verify.ritualfoundation.org` | ✅ Ritual's own verification service |
+
+Three-step process using Ritual's native verification API:
+
+```bash
+# Step 1 — generate Standard JSON Input from the deployed source version
+#           (stash any local edits first if the file has changed since deploy)
+cd contracts
+forge verify-contract <CONTRACT_ADDRESS> src/WeatherMarket.sol:WeatherMarket \
+  --chain-id 1979 --show-standard-json-input > stdj.json
+
+# Step 2 — submit for verification
+#   constructorArgs: ABI-encoded constructor args WITHOUT the 0x prefix
+CTOR=$(cast abi-encode "constructor(string)" "$OPENWEATHER_API_KEY" | sed 's/^0x//')
+
+curl -s -X POST https://verify.ritualfoundation.org/ \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"address\": \"<CONTRACT_ADDRESS>\",
+    \"compilerVersion\": \"v0.8.20+commit.a1b79de6\",
+    \"standardJsonInput\": $(cat stdj.json),
+    \"contractName\": \"WeatherMarket\",
+    \"constructorArgs\": \"$CTOR\"
+  }"
+# → {"jobId":"<UUID>","status":"pending"}
+
+# Step 3 — poll until done (usually completes within ~15 seconds)
+curl "https://verify.ritualfoundation.org/?jobId=<UUID>"
+# → {"status":"done","verified":true,"matchType":"full","contractName":"WeatherMarket"}
+```
+
+The source code submitted must match the **deployed bytecode** exactly. If the local file has been modified after deployment, use `git stash` before Step 1 and `git stash pop` after.
 
 ---
 
