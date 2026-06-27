@@ -20,6 +20,13 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
+      - name: Install OpenZeppelin contracts
+        run: |
+          git clone --depth 1 --branch v5.6.1 \
+            https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable.git \
+            contracts/lib/openzeppelin-contracts-upgradeable
+          git -C contracts/lib/openzeppelin-contracts-upgradeable submodule update --init --recursive
+
       - name: Build contracts
         working-directory: contracts
         run: forge build
