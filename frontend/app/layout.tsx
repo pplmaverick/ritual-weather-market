@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 import { Providers } from "./providers";
-import dynamic from "next/dynamic";
+import { TopNav } from "@/components/layout/TopNav";
+import { SideNav } from "@/components/layout/SideNav";
+import { MobileNav } from "@/components/layout/MobileNav";
+import { FooterStatusBar } from "@/components/layout/FooterStatusBar";
 
 export const metadata: Metadata = {
-  title: "Weather Market — Ritual Chain",
+  title: "RITUAL_WEATHER_MARKET // TERMINAL",
   description: "Bet on real-time weather resolved on-chain via Ritual HTTP precompile",
 };
 
@@ -19,35 +22,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen bg-ritual-bg text-ritual-text font-mono antialiased">
         <Providers cookie={cookie}>
-          <nav className="border-b border-ritual-border px-6 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-ritual-orange font-bold text-lg">&#9681;</span>
-              <span className="text-sm font-bold tracking-wider text-white">WEATHER MARKET</span>
-              <span className="text-xs text-ritual-muted border border-ritual-border rounded px-2 py-0.5">
-                Ritual Chain
-              </span>
-            </div>
-            <ConnectButtonWrapper />
-          </nav>
-          <main className="max-w-5xl mx-auto px-4 py-8">{children}</main>
-          <footer className="border-t border-ritual-border px-6 py-4 text-center text-xs text-ritual-muted">
-            Weather resolved on-chain via Ritual HTTP precompile (0x0801) · No oracle needed
-          </footer>
+          <div className="scanline-overlay" />
+          <TopNav />
+          <SideNav />
+          <main className="md:pl-56 pt-16 pb-16 min-h-screen">
+            <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8">{children}</div>
+          </main>
+          <MobileNav />
+          <FooterStatusBar />
         </Providers>
       </body>
     </html>
   );
 }
-
-function ConnectButtonWrapper() {
-  return (
-    <div suppressHydrationWarning>
-      <ConnectButtonClient />
-    </div>
-  );
-}
-
-const ConnectButtonClient = dynamic(
-  () => import("@/components/ConnectButton").then((m) => m.ConnectButton),
-  { ssr: false, loading: () => <div className="h-9 w-36 bg-ritual-surface rounded animate-pulse" /> },
-);

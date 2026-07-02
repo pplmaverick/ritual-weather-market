@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html class="dark" lang="en"&gt;&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
+<p class="p1">&lt;meta content="width=device-width, initial-scale=1.0" name="viewport"/&gt;</p>
+<p class="p1">&lt;title&gt;RITUAL_WEATHER_MARKET // TERMINAL&lt;/title&gt;</p>
+<p class="p1">&lt;script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0c1511;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #dae5dd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scanline-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scanline-overlay::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>inset: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rgba(18, 16, 16, 0) 50%,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rgba(0, 0, 0, 0.1) 50%</p>
+<p class="p1"><span class="Apple-converted-space">            </span>), linear-gradient(</p>
+<p class="p1"><span class="Apple-converted-space">                </span>90deg,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rgba(255, 0, 0, 0.02),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rgba(0, 255, 0, 0.01),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rgba(0, 0, 255, 0.02)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-size: 100% 2px, 3px 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 10;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crt-glow {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: inset 0 0 12px rgba(0, 255, 136, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blinking-cursor {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #00ff88;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: blink 1s step-end infinite;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes blink {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.on-chain-dot {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: pulse-node 4s ease-in-out infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes pulse-node {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0%, 100% { background-color: #00ff88; box-shadow: 0 0 4px #00ff88; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { background-color: #691ea6; box-shadow: 0 0 4px #691ea6; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.terminal-border {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(0, 255, 136, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.terminal-border-heavy {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #00ff88;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Material Symbols Weight Support */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.material-symbols-outlined {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;script id="tailwind-config"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>darkMode: "class",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"colors": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-container": "#007139",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-dim": "#0c1511",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"error": "#ffb4ab",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-primary": "#006d37",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-tint": "#00e479",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-fixed": "#ffe08d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-highest": "#2d3732",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"outline-variant": "#3b4b3d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary": "#4a007f",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-container": "#d5a4ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container": "#18221d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary": "#fffaf7",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary": "#f1ffef",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-error": "#690005",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-container": "#00ff88",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-fixed-variant": "#661aa3",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-fixed": "#241a00",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-fixed": "#00210c",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-container": "#795f01",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-on-surface": "#28332d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-container": "#691ea6",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-surface": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"outline": "#849585",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-bright": "#313b36",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-variant": "#2d3732",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-background": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-fixed-variant": "#005228",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-low": "#141e19",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-lowest": "#07100c",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-error-container": "#ffdad6",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-fixed-variant": "#584400",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-high": "#222c27",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary": "#003919",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-fixed-dim": "#e5c364",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-fixed": "#2d0050",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-surface": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-container": "#ffdb79",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary": "#3d2f00",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"background": "#0c1511",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-surface-variant": "#b9cbb9",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-fixed-dim": "#00e479",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-fixed-dim": "#dfb7ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"error-container": "#93000a",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-fixed": "#f1dbff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-fixed": "#60ff99",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary": "#dfb7ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface": "#0c1511"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"borderRadius": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"DEFAULT": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"lg": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"xl": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"full": "9999px"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"spacing": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"margin": "24px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"unit": "4px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"container-max": "1440px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"gutter": "16px"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"fontFamily": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"body-md": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"label-sm": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"headline-md": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg-mobile": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"data-mono": ["JetBrains Mono"]</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"fontSize": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "500"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.05em", "fontWeight": "700"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg-mobile": ["32px", {"lineHeight": "1.1", "fontWeight": "700"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"data-mono": ["13px", {"lineHeight": "1", "fontWeight": "500"}]</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-background text-on-surface"&gt;</p>
+<p class="p1">&lt;!-- TopAppBar Shell --&gt;</p>
+<p class="p1">&lt;nav class="flex justify-between items-center px-margin py-4 w-full h-16 fixed top-0 bg-background border-b border-outline-variant z-50"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-8"&gt;</p>
+<p class="p1">&lt;div class="font-headline-md text-headline-md font-bold text-primary-container tracking-tighter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>RITUAL_WEATHER_MARKET</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1">&lt;div class="hidden md:flex gap-6"&gt;</p>
+<p class="p1">&lt;a class="text-primary-container font-bold border-b-2 border-primary-container font-label-sm text-label-sm uppercase tracking-widest h-full flex items-center" href="#"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>MARKETS&lt;span class="blinking-cursor"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="text-on-surface-variant font-medium font-label-sm text-label-sm uppercase tracking-widest hover:text-primary-container transition-colors duration-200" href="#"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>MY_BETS</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1">&lt;a class="text-on-surface-variant font-medium font-label-sm text-label-sm uppercase tracking-widest hover:text-primary-container transition-colors duration-200" href="#"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>NODES</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-primary-container terminal-border px-3 py-1 bg-primary-container/5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>WALLET_STATUS: 0x71C...4f2</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;!-- SideNavBar Shell (Web Only) --&gt;</p>
+<p class="p1">&lt;aside class="fixed left-0 top-16 bottom-0 flex flex-col z-40 bg-surface-container-lowest w-64 border-r border-outline-variant hidden md:flex"&gt;</p>
+<p class="p1">&lt;div class="px-6 py-8 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;h2 class="font-headline-md text-headline-md text-primary-container"&gt;WEATHER_MARKET&lt;/h2&gt;</p>
+<p class="p1">&lt;p class="font-label-sm text-label-sm opacity-50"&gt;TEE_TERMINAL_V1&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;nav class="flex-1 py-4"&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-primary-container bg-primary-container/10 border-l-4 border-primary-container px-6 py-4 transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="analytics"&gt;analytics&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKETS&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-on-surface-variant px-6 py-4 hover:bg-primary-container/5 hover:text-primary-container transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="receipt_long"&gt;receipt_long&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MY_BETS&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-on-surface-variant px-6 py-4 hover:bg-primary-container/5 hover:text-primary-container transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="hub"&gt;hub&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;NODES&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;div class="p-6 mt-auto border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1">&lt;div class="on-chain-dot"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;BLOCK_HEIGHT&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-primary-container"&gt;18442032&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/aside&gt;</p>
+<p class="p1">&lt;!-- Main Content Shell --&gt;</p>
+<p class="p1">&lt;main class="md:pl-64 pt-16 pb-12 min-h-screen scanline-overlay"&gt;</p>
+<p class="p1">&lt;div class="p-margin max-w-container-max mx-auto"&gt;</p>
+<p class="p1">&lt;!-- Header Section --&gt;</p>
+<p class="p1">&lt;header class="mb-8 border-l-4 border-primary-container pl-6 py-2"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-end"&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;h1 class="font-display-lg text-display-lg mb-2"&gt;ACTIVE_PREDICTION_MARKETS&lt;/h1&gt;</p>
+<p class="p1">&lt;p class="font-body-md text-body-md text-on-surface-variant max-w-2xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>Real-time decentralized weather prediction markets resolved by Ritual TEE-agents. Cryptographically verifiable environmental data feeds.</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="hidden lg:block text-right"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm opacity-50 mb-1"&gt;TOTAL_VOLUME_24H&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-headline-md text-headline-md text-primary-container"&gt;$1,244,092.12&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p1">&lt;!-- Monitoring Grid --&gt;</p>
+<p class="p1">&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"&gt;</p>
+<p class="p1">&lt;!-- Market Card 1: London --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-0 flex flex-col group hover:border-primary-container transition-colors duration-200"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-surface-container px-4 py-2 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="on-chain-dot"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #LON-092&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container terminal-border px-2 py-0.5 bg-primary-container/10"&gt;OPEN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;LONDON_UK&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;gt;22.5°C // 2023-11-20&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;ABOVE_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;1.82x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;BELOW_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;2.10x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;CURRENT_TEMP&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;21.8°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-primary-container/5 border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;button class="w-full font-label-sm text-label-sm font-bold border border-primary-container py-3 hover:bg-primary-container hover:text-on-primary transition-all duration-150 uppercase tracking-widest active:scale-[0.98]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>EXECUTE_BET_V2</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Card 2: Tokyo (TEE EXECUTING) --&gt;</p>
+<p class="p1">&lt;div class="terminal-border-heavy bg-surface-container-lowest p-0 flex flex-col crt-glow"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-primary-container/20 px-4 py-2 border-b border-primary-container"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[12px] animate-spin" data-icon="sync"&gt;sync&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #TYO-441&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container animate-pulse"&gt;TEE_EXECUTING...&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;TOKYO_JP&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;lt;18.0°C // 2023-11-19&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;ABOVE_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono line-through opacity-40"&gt;1.45x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;BELOW_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono line-through opacity-40"&gt;3.12x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;FINAL_TEMP&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container underline decoration-double"&gt;CALCULATING_&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-primary-container/10 border-t border-primary-container"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-center py-3 border border-dashed border-primary-container/50 opacity-60 italic"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>MARKET_LOCKED_FOR_RESOLUTION</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Card 3: NYC (RESOLVED) --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-0 flex flex-col border-secondary"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-secondary-container/20 px-4 py-2 border-b border-secondary"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[12px] text-secondary" data-icon="check_circle"&gt;check_circle&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #NYC-882&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-secondary"&gt;RESOLVED_ON_CHAIN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;NEW_YORK_US&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;gt;12.0°C // 2023-11-18&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;RESULT&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-secondary font-bold"&gt;ABOVE_WIN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;PAYOUT_TOTAL&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;42,019.50 USDC&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;RESOLUTION_HASH&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-[10px] opacity-60"&gt;0x8a2c...e91d&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-secondary-container/5 border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;button class="w-full font-label-sm text-label-sm border border-secondary/40 py-3 text-secondary hover:bg-secondary-container/20 transition-all duration-150"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>VIEW_ATTESTATION_REPORT</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Card 4: Sydney --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-0 flex flex-col group hover:border-primary-container transition-colors duration-200"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-surface-container px-4 py-2 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="on-chain-dot"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #SYD-110&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container terminal-border px-2 py-0.5 bg-primary-container/10"&gt;OPEN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;SYDNEY_AU&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;gt;28.0°C // 2023-11-21&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;ABOVE_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;2.14x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;BELOW_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;1.68x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;CURRENT_TEMP&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;26.4°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-primary-container/5 border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;button class="w-full font-label-sm text-label-sm font-bold border border-primary-container py-3 hover:bg-primary-container hover:text-on-primary transition-all duration-150 uppercase tracking-widest active:scale-[0.98]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>EXECUTE_BET_V2</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Card 5: Berlin --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-0 flex flex-col group hover:border-primary-container transition-colors duration-200"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-surface-container px-4 py-2 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="on-chain-dot"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #BER-303&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container terminal-border px-2 py-0.5 bg-primary-container/10"&gt;OPEN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;BERLIN_DE&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;lt;5.0°C // 2023-11-20&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;ABOVE_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;1.95x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;BELOW_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;1.95x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;CURRENT_TEMP&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;4.2°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-primary-container/5 border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;button class="w-full font-label-sm text-label-sm font-bold border border-primary-container py-3 hover:bg-primary-container hover:text-on-primary transition-all duration-150 uppercase tracking-widest active:scale-[0.98]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>EXECUTE_BET_V2</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Card 6: Dubai --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-0 flex flex-col group hover:border-primary-container transition-colors duration-200"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center bg-surface-container px-4 py-2 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="on-chain-dot"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKET_ID: #DXB-702&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container terminal-border px-2 py-0.5 bg-primary-container/10"&gt;OPEN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 flex-1"&gt;</p>
+<p class="p1">&lt;div class="mb-4"&gt;</p>
+<p class="p1">&lt;h3 class="font-headline-md text-headline-md mb-1"&gt;DUBAI_UAE&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant"&gt;TARGET: &amp;gt;32.0°C // 2023-11-20&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-3"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;ABOVE_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;1.22x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between border-b border-outline-variant/30 pb-1"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;BELOW_TARGET&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;4.80x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm opacity-60"&gt;CURRENT_TEMP&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono"&gt;31.5°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="p-4 bg-primary-container/5 border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;button class="w-full font-label-sm text-label-sm font-bold border border-primary-container py-3 hover:bg-primary-container hover:text-on-primary transition-all duration-150 uppercase tracking-widest active:scale-[0.98]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>EXECUTE_BET_V2</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Terminal Logs / Bottom Section --&gt;</p>
+<p class="p1">&lt;section class="mt-12 border border-outline-variant bg-surface-container-low p-6"&gt;</p>
+<p class="p1">&lt;div class="flex items-center justify-between mb-4"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary-container" data-icon="terminal"&gt;terminal&lt;/span&gt;</p>
+<p class="p1">&lt;h2 class="font-label-sm text-label-sm font-bold tracking-widest uppercase"&gt;TEE_VERIFICATION_LOGS&lt;/h2&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container opacity-50"&gt;FILTER: [ALL_EVENTS]&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono space-y-2 opacity-80 h-32 overflow-y-auto pr-4 scrollbar-hide"&gt;</p>
+<p class="p1">&lt;div&gt;[10:42:01] &lt;span class="text-primary-container"&gt;INF:&lt;/span&gt; NODE_RITUAL_01 RECEIVED_WEATHER_DATA(LON-092)&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;[10:42:05] &lt;span class="text-primary-container"&gt;INF:&lt;/span&gt; TEE_ATTESTATION_REQUEST_SENT: 0xc43...112&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;[10:43:12] &lt;span class="text-secondary"&gt;SYS:&lt;/span&gt; MARKET_ID_NYC-882 RESOLVED_SUCCESSFULLY&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;[10:43:12] &lt;span class="text-secondary"&gt;SYS:&lt;/span&gt; DISBURSING_PAYOUTS_TO_212_ADDRESSES&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;[10:44:00] &lt;span class="text-primary-container"&gt;INF:&lt;/span&gt; FETCHING_LATEST_FORECAST_NODES...&lt;/div&gt;</p>
+<p class="p1">&lt;div class="animate-pulse"&gt;[10:45:00] &lt;span class="text-error"&gt;WRN:&lt;/span&gt; HIGH_LATENCY_DETECTED_IN_TOKYO_NODE&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p1">&lt;!-- Footer Shell --&gt;</p>
+<p class="p1">&lt;footer class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-margin h-8 bg-surface-container-low border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-on-surface-variant text-[10px] flex gap-4"&gt;</p>
+<p class="p1">&lt;span&gt;SYSTEM_STATUS: [ONLINE]&lt;/span&gt;</p>
+<p class="p1">&lt;span class="hidden md:inline"&gt;//&lt;/span&gt;</p>
+<p class="p1">&lt;span class="hidden md:inline"&gt;TEE_UPTIME: 99.99%&lt;/span&gt;</p>
+<p class="p1">&lt;span class="hidden md:inline"&gt;//&lt;/span&gt;</p>
+<p class="p1">&lt;span class="hidden md:inline"&gt;BLOCK: 18442032&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex gap-4"&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-all" href="#"&gt;NETWORK&lt;/a&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-all" href="#"&gt;TEE_LOGS&lt;/a&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-all" href="#"&gt;SUPPORT&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/footer&gt;</p>
+<p class="p1">&lt;!-- Mobile Bottom Nav --&gt;</p>
+<p class="p1">&lt;nav class="md:hidden fixed bottom-8 left-0 w-full bg-background border-t border-outline-variant flex justify-around items-center py-2 z-40"&gt;</p>
+<p class="p1">&lt;button class="flex flex-col items-center gap-1 text-primary-container"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="analytics"&gt;analytics&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold"&gt;MARKETS&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;button class="flex flex-col items-center gap-1 text-on-surface-variant"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="receipt_long"&gt;receipt_long&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold"&gt;BETS&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;button class="flex flex-col items-center gap-1 text-on-surface-variant"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="hub"&gt;hub&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold"&gt;NODES&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;!-- Floating Action Button --&gt;</p>
+<p class="p1">&lt;button class="fixed bottom-20 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-primary-container text-on-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,255,136,0.5)] z-50 hover:scale-110 active:scale-95 transition-all"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined" data-icon="add" style="font-size: 32px;"&gt;add&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Simple Interaction logic for terminal feel</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('button').forEach(btn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>btn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log('EXECUTING_COMMAND...');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Simulating log updates</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const logs = document.querySelector('.scrollbar-hide');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const time = new Date().toLocaleTimeString([], { hour12: false });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const logEntry = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>logEntry.innerHTML = `[${time}] &lt;span class="text-primary-container"&gt;INF:&lt;/span&gt; HEARTBEAT_SYNC_COMPLETED_SUCCESSFULLY`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>logs.appendChild(logEntry);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(logs.children.length &gt; 20) logs.removeChild(logs.children[0]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>logs.scrollTop = logs.scrollHeight;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, 8000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
+</body>
+</html>

@@ -31,6 +31,11 @@ export function parseTargetTemp(input: string): bigint {
   return BigInt(Math.round(f * 100));
 }
 
+/** Convert OpenWeather city string (e.g. "London,GB") to terminal-style label ("LONDON_GB") */
+export function formatCityLabel(city: string): string {
+  return city.toUpperCase().replace(/[,\s]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
 // ─── Market count ─────────────────────────────────────────────────────────────
 
 export function useMarketCount() {

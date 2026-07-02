@@ -3,10 +3,11 @@
 import dynamic from "next/dynamic";
 import { useMarketCount } from "@/hooks/useWeatherMarket";
 import { MARKET_ADDRESS } from "@/lib/addresses";
+import { TeeVerificationLog } from "@/components/TeeVerificationLog";
 
 const ChainGuard   = dynamic(() => import("@/components/ChainGuard").then((m) => m.ChainGuard), { ssr: false });
 const CreateMarket = dynamic(() => import("@/components/CreateMarket").then((m) => m.CreateMarket), { ssr: false });
-const MarketCard   = dynamic(() => import("@/components/MarketCard").then((m) => m.MarketCard), { ssr: false });
+const MarketGridCard = dynamic(() => import("@/components/MarketGridCard").then((m) => m.MarketGridCard), { ssr: false });
 
 export default function Home() {
   return (
@@ -25,23 +26,23 @@ function MarketList() {
   if (isContractMissing) {
     return (
       <div className="max-w-lg mx-auto mt-16 text-center space-y-4">
-        <p className="text-ritual-orange font-bold text-lg">Contract not deployed yet</p>
-        <div className="text-xs text-ritual-muted border border-ritual-border rounded-lg p-4 text-left space-y-2">
-          <p className="font-bold text-white">Setup steps:</p>
+        <p className="text-ritual-yellow font-bold text-lg">CONTRACT_NOT_DEPLOYED</p>
+        <div className="text-xs text-ritual-muted terminal-border p-4 text-left space-y-2">
+          <p className="font-bold text-ritual-text">SETUP_STEPS:</p>
           <ol className="list-decimal list-inside space-y-1">
             <li>Get testnet RITUAL from the faucet (link below)</li>
-            <li>Copy <code className="text-ritual-orange">contracts/.env.example</code> to <code className="text-ritual-orange">contracts/.env</code> and fill in your keys</li>
-            <li>Run: <code className="text-ritual-orange block mt-1 ml-4">cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url $RITUAL_RPC_URL --broadcast -vvvv</code></li>
-            <li>Copy the contract address to <code className="text-ritual-orange">frontend/.env.local</code></li>
-            <li>Restart: <code className="text-ritual-orange">npm run dev</code></li>
+            <li>Copy <code className="text-ritual-accent">contracts/.env.example</code> to <code className="text-ritual-accent">contracts/.env</code> and fill in your keys</li>
+            <li>Run: <code className="text-ritual-accent block mt-1 ml-4">cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url $RITUAL_RPC_URL --broadcast -vvvv</code></li>
+            <li>Copy the contract address to <code className="text-ritual-accent">frontend/.env.local</code></li>
+            <li>Restart: <code className="text-ritual-accent">npm run dev</code></li>
           </ol>
           <a
             href="https://faucet.ritualfoundation.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="block mt-3 text-ritual-orange underline"
+            className="block mt-3 text-ritual-accent underline"
           >
-            → Get testnet RITUAL
+            → GET_TESTNET_RITUAL
           </a>
         </div>
       </div>
@@ -53,43 +54,46 @@ function MarketList() {
     : [];
 
   return (
-    <div className="space-y-6">
-      {/* Hero */}
-      <div className="border border-ritual-border rounded-lg p-6 bg-ritual-surface">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-ritual-orange">&#9681;</span>
-          <span className="text-xs text-ritual-muted uppercase tracking-widest">Ritual HTTP Precompile (0x0801)</span>
+    <div>
+      {/* Header */}
+      <header className="mb-8 border-l-4 border-ritual-accent pl-6 py-2">
+        <div className="flex flex-col md:flex-row justify-between md:items-end gap-4">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              ACTIVE_PREDICTION_MARKETS
+            </h1>
+            <p className="text-sm text-ritual-muted max-w-2xl">
+              Real-time weather prediction markets resolved on-chain via the Ritual HTTP precompile (0x0801).
+              No oracle, no off-chain bot — a TEE executor fetches OpenWeather data directly from Solidity.
+            </p>
+          </div>
+          <div className="text-left md:text-right">
+            <div className="text-[10px] text-ritual-muted uppercase tracking-widest mb-1">TOTAL_MARKETS</div>
+            <div className="text-2xl text-ritual-accent">
+              {count !== undefined ? count.toString() : "..."}
+            </div>
+          </div>
         </div>
-        <h1 className="text-xl font-bold text-white">On-Chain Weather Markets</h1>
-        <p className="text-sm text-ritual-muted mt-2 max-w-xl">
-          Bet on real-time city temperatures. Markets resolve by calling the OpenWeather API
-          directly from Solidity — no oracle, no off-chain bot. A TEE executor fetches the data
-          and the result is settled on Ritual Chain.
-        </p>
-        <div className="flex gap-4 mt-4 text-xs text-ritual-muted">
-          <span>&#8192;Chain ID: 1979</span>
-          <span>&#8192;No oracle needed</span>
-          <span>&#8192;TEE-verified HTTP</span>
-        </div>
-      </div>
+      </header>
 
-      {/* Create */}
-      <CreateMarket onCreated={refetchCount} />
-
-      {/* Markets */}
+      {/* Monitoring grid */}
       {count === undefined ? (
-        <div className="text-ritual-muted text-sm text-center py-8">Loading markets...</div>
+        <div className="text-ritual-muted text-sm text-center py-8">LOADING_MARKETS...</div>
       ) : count === BigInt(0) ? (
-        <div className="text-ritual-muted text-sm text-center py-8">
-          No markets yet. Create the first one above.
+        <div className="text-ritual-muted text-sm text-center py-8 terminal-border">
+          NO_MARKETS_YET. Use the [+] button to create the first one.
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {marketIds.reverse().map((id) => (
-            <MarketCard key={id.toString()} marketId={id} />
+            <MarketGridCard key={id.toString()} marketId={id} />
           ))}
         </div>
       )}
+
+      <TeeVerificationLog />
+
+      <CreateMarket onCreated={refetchCount} />
     </div>
   );
 }

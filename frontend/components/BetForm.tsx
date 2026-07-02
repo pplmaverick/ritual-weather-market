@@ -30,68 +30,75 @@ export function BetForm({ marketId, targetTemp, onBet }: Props) {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-6">
       {/* Show existing bets */}
       {userBets && (userBets[0] > BigInt(0) || userBets[1] > BigInt(0)) && (
-        <div className="text-xs text-ritual-muted border border-ritual-border rounded p-2">
-          Your bets: &nbsp;
+        <div className="text-xs text-ritual-muted terminal-border px-3 py-2">
+          YOUR_POSITION: &nbsp;
           {userBets[0] > BigInt(0) && (
-            <span className="text-green-400">Above: {formatEther(userBets[0])} RITUAL </span>
+            <span className="text-ritual-accent">ABOVE: {formatEther(userBets[0])} RITUAL &nbsp;</span>
           )}
           {userBets[1] > BigInt(0) && (
-            <span className="text-red-400">Below: {formatEther(userBets[1])} RITUAL</span>
+            <span className="text-ritual-red">BELOW: {formatEther(userBets[1])} RITUAL</span>
           )}
-          {userBets[2] && <span className="text-ritual-orange ml-2">Claimed</span>}
+          {userBets[2] && <span className="text-ritual-purple ml-2">CLAIMED</span>}
         </div>
       )}
 
       {isSuccess ? (
-        <p className="text-green-400 text-xs">Bet placed successfully!</p>
+        <p className="text-ritual-accent text-xs">BET_PLACED_SUCCESSFULLY</p>
       ) : (
-        <form onSubmit={handleBet} className="space-y-3">
-          {/* Side selector */}
-          <div className="grid grid-cols-2 gap-2">
+        <form onSubmit={handleBet} className="space-y-6">
+          {/* Amount */}
+          <div>
+            <label className="text-[10px] text-ritual-muted block mb-2 tracking-widest">
+              STAKE_AMOUNT (RITUAL)
+            </label>
+            <div className="relative">
+              <input
+                type="number"
+                step="0.001"
+                min="0.001"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="w-full bg-transparent border-0 border-b border-ritual-border text-2xl
+                           text-ritual-accent focus:ring-0 focus:border-ritual-accent placeholder:text-ritual-muted
+                           p-0 pb-2 outline-none"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          {/* Direction toggle */}
+          <div className="grid grid-cols-2 gap-4">
             <button
               type="button"
               onClick={() => setSide("above")}
-              className={`py-2 px-3 text-xs font-bold rounded border transition-colors ${
-                side === "above"
-                  ? "border-green-500 bg-green-500/10 text-green-400"
-                  : "border-ritual-border text-ritual-muted hover:border-green-500/50"
+              className={`terminal-border py-4 px-6 flex flex-col items-center gap-1 transition-all ${
+                side === "above" ? "border-ritual-accent bg-ritual-accent/10" : "hover:bg-ritual-accent/5"
               }`}
             >
-              &#9650; ABOVE {formatTemp(targetTemp)}
+              <span className="text-ritual-accent text-lg" aria-hidden>▲</span>
+              <span className="text-[11px] text-ritual-muted tracking-widest">
+                ABOVE {formatTemp(targetTemp)}
+              </span>
             </button>
             <button
               type="button"
               onClick={() => setSide("below")}
-              className={`py-2 px-3 text-xs font-bold rounded border transition-colors ${
-                side === "below"
-                  ? "border-red-500 bg-red-500/10 text-red-400"
-                  : "border-ritual-border text-ritual-muted hover:border-red-500/50"
+              className={`terminal-border py-4 px-6 flex flex-col items-center gap-1 transition-all ${
+                side === "below" ? "border-ritual-red bg-ritual-red/10" : "hover:bg-ritual-red/5"
               }`}
             >
-              &#9660; BELOW {formatTemp(targetTemp)}
+              <span className="text-ritual-red text-lg" aria-hidden>▼</span>
+              <span className="text-[11px] text-ritual-muted tracking-widest">
+                BELOW {formatTemp(targetTemp)}
+              </span>
             </button>
           </div>
 
-          {/* Amount */}
-          <div className="flex gap-2">
-            <input
-              type="number"
-              step="0.001"
-              min="0.001"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="flex-1 bg-ritual-bg border border-ritual-border rounded px-3 py-2
-                         text-sm text-white focus:border-ritual-orange focus:outline-none"
-              placeholder="0.01"
-            />
-            <span className="self-center text-xs text-ritual-muted">RITUAL</span>
-          </div>
-
           {error && (
-            <p className="text-red-400 text-xs bg-red-400/10 border border-red-400/20 rounded px-2 py-1">
+            <p className="text-ritual-red text-xs border border-ritual-red/30 bg-ritual-red/10 px-3 py-2">
               {error.slice(0, 120)}
             </p>
           )}
@@ -99,13 +106,14 @@ export function BetForm({ marketId, targetTemp, onBet }: Props) {
           <button
             type="submit"
             disabled={isPending || isConfirming}
-            className={`w-full py-2 text-sm font-bold rounded transition-colors disabled:opacity-50 ${
+            className={`terminal-border-strong w-full py-5 text-sm font-bold uppercase tracking-widest
+                       transition-all active:scale-[0.98] disabled:opacity-50 ${
               side === "above"
-                ? "bg-green-500/10 border border-green-500 text-green-400 hover:bg-green-500/20"
-                : "bg-red-500/10 border border-red-500 text-red-400 hover:bg-red-500/20"
+                ? "text-ritual-accent bg-ritual-accent/5 hover:bg-ritual-accent/20"
+                : "text-ritual-red border-ritual-red bg-ritual-red/5 hover:bg-ritual-red/20"
             }`}
           >
-            {isPending ? "Confirm in wallet..." : isConfirming ? "Placing bet..." : "Place Bet"}
+            {isPending ? "CONFIRM_IN_WALLET..." : isConfirming ? "PLACING_BET..." : "[EXECUTE_BET]"}
           </button>
         </form>
       )}

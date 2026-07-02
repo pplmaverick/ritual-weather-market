@@ -10,18 +10,18 @@ export function ChainGuard({ children }: { children: React.ReactNode }) {
   if (isConnected && chain?.id !== ritualChain.id) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
-        <div className="text-3xl">&#9888;</div>
+        <div className="text-3xl text-ritual-yellow">&#9888;</div>
         <p className="text-ritual-muted text-sm">
-          You are on <span className="text-white">{chain?.name}</span>.
-          Switch to Ritual Chain to use this app.
+          WRONG_NETWORK: connected to <span className="text-ritual-text">{chain?.name}</span>.
+          Switch to Ritual Chain to use this terminal.
         </p>
         <button
           onClick={() => switchChain({ chainId: ritualChain.id })}
           disabled={isPending}
-          className="px-5 py-2.5 bg-ritual-orange/10 border border-ritual-orange text-ritual-orange
-                     text-sm rounded hover:bg-ritual-orange/20 transition-colors disabled:opacity-50"
+          className="px-5 py-2.5 bg-ritual-accent/10 border border-ritual-accent text-ritual-accent
+                     text-sm uppercase tracking-widest hover:bg-ritual-accent/20 transition-colors disabled:opacity-50"
         >
-          {isPending ? "Switching..." : "Switch to Ritual Chain"}
+          {isPending ? "SWITCHING..." : "[SWITCH_TO_RITUAL_CHAIN]"}
         </button>
       </div>
     );

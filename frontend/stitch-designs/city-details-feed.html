@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html class="dark" lang="en"&gt;&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
+<p class="p1">&lt;meta content="width=device-width, initial-scale=1.0" name="viewport"/&gt;</p>
+<p class="p1">&lt;title&gt;RITUAL_WEATHER_MARKET // TOKYO_JP&lt;/title&gt;</p>
+<p class="p1">&lt;script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-glow: rgba(0, 255, 136, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--crt-scanline: rgba(0, 255, 136, 0.03);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0c1511;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #dae5dd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.inner-glow {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: inset 0px 0px 12px var(--primary-glow);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scanline-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: repeating-linear-gradient(</p>
+<p class="p1"><span class="Apple-converted-space">                </span>0deg,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transparent,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transparent 1px,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>var(--crt-scanline) 1px,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>var(--crt-scanline) 2px</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blink {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: blinker 1s step-end infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes blinker {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.terminal-border {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(132, 149, 133, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.neon-border {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #00ff88;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.ritual-gradient-bg {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(180deg, rgba(24, 34, 29, 1) 0%, rgba(12, 21, 17, 1) 100%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;script id="tailwind-config"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>darkMode: "class",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"colors": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-container": "#007139",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-dim": "#0c1511",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"error": "#ffb4ab",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-primary": "#006d37",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-tint": "#00e479",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-fixed": "#ffe08d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-highest": "#2d3732",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"outline-variant": "#3b4b3d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary": "#4a007f",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-container": "#d5a4ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container": "#18221d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary": "#fffaf7",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary": "#f1ffef",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-error": "#690005",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-container": "#00ff88",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-fixed-variant": "#661aa3",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-fixed": "#241a00",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-fixed": "#00210c",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-container": "#795f01",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-on-surface": "#28332d",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-container": "#691ea6",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-surface": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"outline": "#849585",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-bright": "#313b36",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-variant": "#2d3732",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-background": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary-fixed-variant": "#005228",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-low": "#141e19",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-lowest": "#07100c",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-error-container": "#ffdad6",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary-fixed-variant": "#584400",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface-container-high": "#222c27",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-primary": "#003919",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-fixed-dim": "#e5c364",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-secondary-fixed": "#2d0050",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"inverse-surface": "#dae5dd",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"tertiary-container": "#ffdb79",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-tertiary": "#3d2f00",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"background": "#0c1511",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"on-surface-variant": "#b9cbb9",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-fixed-dim": "#00e479",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-fixed-dim": "#dfb7ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"error-container": "#93000a",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary-fixed": "#f1dbff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"primary-fixed": "#60ff99",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"secondary": "#dfb7ff",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"surface": "#0c1511"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"borderRadius": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"DEFAULT": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"lg": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"xl": "0px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"full": "9999px"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"spacing": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"margin": "24px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"unit": "4px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"container-max": "1440px",</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"gutter": "16px"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"fontFamily": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"body-md": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"label-sm": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"headline-md": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg-mobile": ["JetBrains Mono"],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"data-mono": ["JetBrains Mono"]</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"fontSize": {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "500"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.05em", "fontWeight": "700"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"display-lg-mobile": ["32px", {"lineHeight": "1.1", "fontWeight": "700"}],</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>"data-mono": ["13px", {"lineHeight": "1", "fontWeight": "500"}]</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="flex flex-col min-h-screen"&gt;</p>
+<p class="p1">&lt;!-- Top Navigation Bar --&gt;</p>
+<p class="p1">&lt;header class="bg-background border-b border-outline-variant flex justify-between items-center px-margin py-4 w-full h-16 fixed top-0 z-50"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-6"&gt;</p>
+<p class="p1">&lt;button class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary-container transition-colors duration-200 flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[14px]"&gt;arrow_back_ios&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>[&amp;lt;&amp;lt; RETURN]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1">&lt;div class="font-headline-md text-headline-md font-bold text-primary-container tracking-tighter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>RITUAL_WEATHER_MARKET</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-primary-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>WALLET_STATUS: 0x8f2a...c91e</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p1">&lt;!-- Side Navigation Bar --&gt;</p>
+<p class="p1">&lt;aside class="hidden md:flex fixed left-0 top-16 bottom-0 flex flex-col z-40 bg-surface-container-lowest border-r border-outline-variant w-64"&gt;</p>
+<p class="p1">&lt;div class="p-6 border-b border-outline-variant"&gt;</p>
+<p class="p1">&lt;h2 class="font-headline-md text-headline-md text-primary-container"&gt;WEATHER_MARKET&lt;/h2&gt;</p>
+<p class="p1">&lt;p class="font-label-sm text-label-sm text-on-surface-variant opacity-60"&gt;TEE_TERMINAL_V1&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;nav class="flex-1 py-4"&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-primary-container bg-primary-container/10 border-l-4 border-primary-container px-6 py-4 transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;analytics&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MARKETS&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-on-surface-variant px-6 py-4 hover:bg-primary-container/5 hover:text-primary-container transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;receipt_long&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;MY_BETS&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-4 text-on-surface-variant px-6 py-4 hover:bg-primary-container/5 hover:text-primary-container transition-all duration-150" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;hub&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm"&gt;NODES&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;/aside&gt;</p>
+<p class="p1">&lt;!-- Main Content Canvas --&gt;</p>
+<p class="p1">&lt;main class="flex-1 md:ml-64 mt-16 mb-8 p-margin"&gt;</p>
+<p class="p1">&lt;div class="max-w-container-max mx-auto"&gt;</p>
+<p class="p1">&lt;!-- Breadcrumbs / Status Header --&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-end mb-8"&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;h1 class="font-display-lg text-display-lg text-primary-container"&gt;TOKYO_JP&lt;/h1&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-3 text-on-surface-variant font-data-mono text-data-mono mt-1"&gt;</p>
+<p class="p1">&lt;span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>LIVE_FEED // STATION: RJTT_HND</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="text-right"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant mb-1"&gt;SETTLEMENT_TARGET&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-headline-md text-headline-md text-primary"&gt;&amp;gt; 28.0°C&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter"&gt;</p>
+<p class="p1">&lt;!-- Left Column: Data Monitoring --&gt;</p>
+<p class="p1">&lt;div class="lg:col-span-7 space-y-gutter"&gt;</p>
+<p class="p1">&lt;!-- Visualization Card --&gt;</p>
+<p class="p1">&lt;div class="ritual-gradient-bg terminal-border inner-glow relative p-6 h-96 overflow-hidden"&gt;</p>
+<p class="p1">&lt;div class="scanline-overlay absolute inset-0"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between mb-4"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container bg-primary-container/10 px-2 py-0.5"&gt;HISTORICAL_TREND_V3&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-on-surface-variant"&gt;UTC: 14:22:01&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Chart Placeholder Area --&gt;</p>
+<p class="p1">&lt;div class="absolute inset-0 top-16 flex items-end justify-between px-6 pb-12"&gt;</p>
+<p class="p1">&lt;!-- Custom CSS visualization to avoid image data --&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/20 h-32 border-t border-primary-container/40"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/20 h-40 border-t border-primary-container/50"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/30 h-48 border-t border-primary-container/60"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/20 h-36 border-t border-primary-container/40"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/40 h-56 border-t border-primary-container/80"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/50 h-64 border-t border-primary-container"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/40 h-52 border-t border-primary-container/80"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/60 h-72 border-t border-primary-container"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/70 h-[85%] border-t border-primary-container"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="w-[5%] bg-primary-container/50 h-60 border-t border-primary-container"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="absolute bottom-6 left-6 font-data-mono text-data-mono text-primary-container flex items-center gap-4"&gt;</p>
+<p class="p1">&lt;span&gt;AVG: 26.4°C&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-on-surface-variant"&gt;MAX: 29.1°C&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-on-surface-variant"&gt;MIN: 24.0°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Market Stats --&gt;</p>
+<p class="p1">&lt;div class="grid grid-cols-2 md:grid-cols-4 gap-gutter"&gt;</p>
+<p class="p1">&lt;div class="terminal-border p-4 bg-surface-container-low"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant mb-2"&gt;VOLUME&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-headline-md text-primary"&gt;124.5k&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="terminal-border p-4 bg-surface-container-low"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant mb-2"&gt;LIQUIDITY&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-headline-md text-primary"&gt;89.2k&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="terminal-border p-4 bg-surface-container-low"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant mb-2"&gt;HOLDERS&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-headline-md text-primary"&gt;412&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="terminal-border p-4 bg-surface-container-low"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant mb-2"&gt;ORACLE&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-headline-md text-primary"&gt;TEE_01&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Right Column: Execution Panel --&gt;</p>
+<p class="p1">&lt;div class="lg:col-span-5 space-y-gutter"&gt;</p>
+<p class="p1">&lt;!-- Betting Form --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-lowest p-8 relative"&gt;</p>
+<p class="p1">&lt;div class="absolute top-0 right-0 p-2 opacity-30"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;security&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;h3 class="font-label-sm text-label-sm text-on-surface-variant mb-8 uppercase tracking-widest"&gt;Execution_Panel_v1.0&lt;/h3&gt;</p>
+<p class="p1">&lt;!-- Temperature Feed --&gt;</p>
+<p class="p1">&lt;div class="mb-10 flex items-center justify-between border-b border-outline-variant pb-6"&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant"&gt;CURRENT_READING&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-display-lg text-primary-container mt-1"&gt;27.4°C&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="text-right"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant"&gt;THRESHOLD&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-headline-md text-primary mt-1"&gt;28.0°C&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Amount Input --&gt;</p>
+<p class="p1">&lt;div class="mb-8"&gt;</p>
+<p class="p1">&lt;label class="font-label-sm text-label-sm text-on-surface-variant block mb-2"&gt;STAKE_AMOUNT (RITUAL)&lt;/label&gt;</p>
+<p class="p1">&lt;div class="relative group"&gt;</p>
+<p class="p1">&lt;input class="w-full bg-transparent border-0 border-b border-outline-variant text-headline-md font-data-mono text-primary-container focus:ring-0 focus:border-primary-container placeholder:text-outline p-0 pb-2" placeholder="0.00" step="0.01" type="number"/&gt;</p>
+<p class="p1">&lt;span class="absolute right-0 bottom-2 text-on-surface-variant font-data-mono text-data-mono blink"&gt;_&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Direction Toggle --&gt;</p>
+<p class="p1">&lt;div class="grid grid-cols-2 gap-4 mb-8"&gt;</p>
+<p class="p1">&lt;button class="terminal-border py-4 px-6 flex flex-col items-center gap-1 transition-all group hover:bg-primary-container/10" id="btn-above" onclick="selectDirection('above')"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary-container"&gt;expand_less&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary-container"&gt;ABOVE&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;button class="terminal-border py-4 px-6 flex flex-col items-center gap-1 transition-all group hover:bg-error/10" id="btn-below" onclick="selectDirection('below')"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-error"&gt;expand_more&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-error"&gt;BELOW&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Odds Summary --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container p-4 border-l-2 border-primary-container mb-10"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center mb-2"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-on-surface-variant"&gt;ESTIMATED_ODDS&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;1.84x&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center"&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-on-surface-variant"&gt;POTENTIAL_RETURN&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-data-mono text-data-mono text-primary-container"&gt;-- RITUAL&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Action Button --&gt;</p>
+<p class="p1">&lt;button class="neon-border w-full py-5 font-headline-md text-headline-md text-primary-container bg-primary-container/5 hover:bg-primary-container/20 transition-all active:scale-[0.98] relative overflow-hidden group"&gt;</p>
+<p class="p1">&lt;div class="scanline-overlay absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>[EXECUTE_BET]</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Status Display --&gt;</p>
+<p class="p1">&lt;div class="terminal-border bg-surface-container-low p-6"&gt;</p>
+<p class="p1">&lt;div class="flex items-center justify-between mb-4"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary-container text-lg" style="font-variation-settings: 'FILL' 1;"&gt;terminal&lt;/span&gt;</p>
+<p class="p1">&lt;span class="font-label-sm text-label-sm text-primary-container"&gt;TEE MONITORING&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-data-mono text-error animate-pulse"&gt;RECORDING_ON_CHAIN&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-baseline justify-between"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-label-sm text-on-surface-variant"&gt;EXPIRY_COUNTDOWN&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-display-lg text-primary text-[32px] tracking-widest"&gt;[00:42:15]&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="mt-4 pt-4 border-t border-outline-variant flex gap-4"&gt;</p>
+<p class="p1">&lt;div class="flex-1"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-[9px] text-on-surface-variant mb-1"&gt;NODE_ID&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-[11px] text-on-surface truncate"&gt;TEE_X86_RITUAL_00392&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex-1"&gt;</p>
+<p class="p1">&lt;div class="font-label-sm text-[9px] text-on-surface-variant mb-1"&gt;PROOFS&lt;/div&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-[11px] text-on-surface"&gt;GENERATED_VERIFIED&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p1">&lt;!-- Footer Stats Bar --&gt;</p>
+<p class="p1">&lt;footer class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-margin h-8 bg-surface-container-low border-t border-outline-variant"&gt;</p>
+<p class="p1">&lt;div class="font-data-mono text-label-sm text-on-surface-variant opacity-80"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>SYSTEM_STATUS: [ONLINE] // TEE_UPTIME: 99.99% // BLOCK: 18442032</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex gap-8"&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-colors" href="#"&gt;NETWORK&lt;/a&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-colors" href="#"&gt;TEE_LOGS&lt;/a&gt;</p>
+<p class="p1">&lt;a class="font-label-sm text-label-sm text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-container transition-colors" href="#"&gt;SUPPORT&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/footer&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function selectDirection(dir) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btnAbove = document.getElementById('btn-above');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btnBelow = document.getElementById('btn-below');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (dir === 'above') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnAbove.classList.add('bg-primary-container/10', 'border-primary-container');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnAbove.classList.remove('border-outline-variant');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnBelow.classList.remove('bg-error/10', 'border-error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnBelow.classList.add('border-outline-variant');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnBelow.classList.add('bg-error/10', 'border-error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnBelow.classList.remove('border-outline-variant');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnAbove.classList.remove('bg-primary-container/10', 'border-primary-container');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btnAbove.classList.add('border-outline-variant');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Simulating some live terminal updates</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const countdown = document.querySelector('.font-display-lg.text-primary.text-\\[32px\\]');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (countdown) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Just a mock increment for visual flavor</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let parts = countdown.textContent.replace(/[\[\]]/g, '').split(':');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let seconds = parseInt(parts[2]);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>seconds = seconds &gt; 0 ? seconds - 1 : 59;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>parts[2] = seconds &lt; 10 ? '0' + seconds : seconds;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>countdown.textContent = `[${parts.join(':')}]`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
+</body>
+</html>
