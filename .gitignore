@@ -13,6 +13,9 @@ contracts/cache/
 frontend/.next/
 frontend/out/
 
+# Vercel
+.vercel
+
 # OS
 .DS_Store
 
