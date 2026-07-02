@@ -105,22 +105,18 @@ export function MarketGridCard({ marketId }: Props) {
       </div>
 
       <div className={`p-4 border-t ${isExecuting ? "bg-ritual-accent/10 border-ritual-accent" : "bg-ritual-accent/5 border-ritual-border"}`}>
-        {isExecuting ? (
-          <div className="text-[11px] text-center py-3 border border-dashed border-ritual-accent/50 opacity-60 italic">
-            MARKET_LOCKED_FOR_RESOLUTION
-          </div>
-        ) : (
-          <Link
-            href={`/market/${marketId.toString()}`}
-            className={`block w-full text-center text-[11px] font-bold py-3 uppercase tracking-widest transition-all active:scale-[0.98] ${
-              isResolved
-                ? "border border-ritual-purple/40 text-ritual-purple hover:bg-ritual-purple/20"
-                : "border border-ritual-accent hover:bg-ritual-accent hover:text-ritual-bg"
-            }`}
-          >
-            {isResolved ? "VIEW_ATTESTATION" : "EXECUTE_BET_V2"}
-          </Link>
-        )}
+        <Link
+          href={`/market/${marketId.toString()}`}
+          className={`block w-full text-center text-[11px] font-bold py-3 uppercase tracking-widest transition-all active:scale-[0.98] ${
+            isExecuting
+              ? "border border-dashed border-ritual-accent/50 text-ritual-accent/80 hover:bg-ritual-accent/10 hover:border-solid"
+              : isResolved
+              ? "border border-ritual-purple/40 text-ritual-purple hover:bg-ritual-purple/20"
+              : "border border-ritual-accent hover:bg-ritual-accent hover:text-ritual-bg"
+          }`}
+        >
+          {isExecuting ? "VIEW_LIVE_STATUS" : isResolved ? "VIEW_ATTESTATION" : "EXECUTE_BET_V2"}
+        </Link>
       </div>
     </div>
   );
