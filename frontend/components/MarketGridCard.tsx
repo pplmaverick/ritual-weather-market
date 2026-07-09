@@ -37,6 +37,12 @@ export function MarketGridCard({ marketId }: Props) {
     return <div className="terminal-border bg-ritual-panel h-64 animate-pulse" />;
   }
 
+  // Expired with no bets ever placed: resolveMarket() will always revert with
+  // NoBetsPlaced(), so this market can never resolve — hide it from the list.
+  if (BigInt(Date.now()) >= state.resolutionTime && state.totalPot === BigInt(0)) {
+    return null;
+  }
+
   const meta = STATUS_META[state.status];
   const isExecuting = state.status === "resolvable";
   const isResolved = state.status === "resolved";
