@@ -18,7 +18,7 @@ export default function Home() {
 }
 
 function MarketList() {
-  const { data: count, refetch: refetchCount } = useMarketCount();
+  const { data: count, isError, error, refetch: refetchCount } = useMarketCount();
 
   const isContractMissing =
     MARKET_ADDRESS === "0x0000000000000000000000000000000000000000";
@@ -77,7 +77,18 @@ function MarketList() {
       </header>
 
       {/* Monitoring grid */}
-      {count === undefined ? (
+      {isError ? (
+        <div className="text-ritual-yellow text-sm text-center py-8 terminal-border">
+          FAILED_TO_LOAD_MARKETS: {error?.message ?? "unknown error"}
+          <button
+            onClick={() => refetchCount()}
+            className="block mx-auto mt-3 px-4 py-1.5 border border-ritual-accent text-ritual-accent
+                       text-xs uppercase tracking-widest hover:bg-ritual-accent/20 transition-colors"
+          >
+            [RETRY]
+          </button>
+        </div>
+      ) : count === undefined ? (
         <div className="text-ritual-muted text-sm text-center py-8">LOADING_MARKETS...</div>
       ) : count === BigInt(0) ? (
         <div className="text-ritual-muted text-sm text-center py-8 terminal-border">

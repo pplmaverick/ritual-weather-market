@@ -12,9 +12,5 @@ export const ritualChain = defineChain({
   blockExplorers: {
     default: { name: "Ritual Explorer", url: "https://explorer.ritualfoundation.org" },
   },
-  contracts: {
-    multicall3: {
-      address: "0x5577Ea679673Ec7508E9524100a188E7600202a3",
-    },
-  },
+  // No multicall3 on Ritual testnet — wagmi falls back to individual eth_call per read
 });
