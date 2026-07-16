@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useMarketCount } from "@/hooks/useWeatherMarket";
 import { MARKET_ADDRESS } from "@/lib/addresses";
 import { TeeVerificationLog } from "@/components/TeeVerificationLog";
+import { SettlementHistory } from "@/components/SettlementHistory";
 
 const ChainGuard   = dynamic(() => import("@/components/ChainGuard").then((m) => m.ChainGuard), { ssr: false });
 const CreateMarket = dynamic(() => import("@/components/CreateMarket").then((m) => m.CreateMarket), { ssr: false });
@@ -101,6 +102,8 @@ function MarketList() {
           ))}
         </div>
       )}
+
+      <SettlementHistory />
 
       <TeeVerificationLog />
 
