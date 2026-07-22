@@ -78,6 +78,25 @@ Transaction hashes:
 - MKT_14 — resolveMarket: `0xfde462451ba70b354614acd530714f0d13e999f1aa295c7f313d45e80ad026d5`, claim: `0x03ccd33feea3f64e2f39847120352b1759696dc08a577ed548c924a4068f34dc`
 - MKT_15 — resolveMarket: `0x8afcadc230a374dee038ec5e30b94f7d822f886da686caa31a762f18497d1618`, claim: `0xa8d8c26089ebf9d25731af4931e3cf96c47bf4a33faf4f88b1f661a2608d5f8e`
 
+### Round 6 Markets (MKT_16–19, created 2026-07-22)
+
+| Market | City | Threshold | bettingDeadline | resolutionTime |
+|---|---|---|---|---|
+| MKT_16 | Taipei, TW | >30.00°C | 2026-07-28 14:00 UTC | 2026-07-28 15:00 UTC |
+| MKT_17 | Tokyo, JP | >28.00°C | 2026-07-28 14:00 UTC | 2026-07-28 15:00 UTC |
+| MKT_18 | Bangkok, TH | >32.00°C | 2026-07-28 14:00 UTC | 2026-07-28 15:00 UTC |
+| MKT_19 | Seoul, KR | >28.00°C | 2026-07-28 14:00 UTC | 2026-07-28 15:00 UTC |
+
+Each market seeded with one 0.001 RITUAL "above" bet from the deployer wallet.
+
+Transaction hashes:
+- MKT_16 — createMarket: `0x2f8e84b3ddf509e8b3be5bbc9accb9780179500de8777daa6704ee769e388e25`, placeBet: `0x9f806addd2411c0aa7564b99ec25909c05b1b2bf1e53860af9f441c46aa6548c`
+- MKT_17 — createMarket: `0x0cb1280bee08b112fe7153dfe07f0c49f3a9cf776d5b5437287ffe7e368cc00e`, placeBet: `0xaf40aa13b7f2b9543c6257a6c61379e4d6b92e539c6e47f354efd947b88f7578`
+- MKT_18 — createMarket: `0x19089b801bd752eb235698062bb61850ed8b7eb9376b2a9dc7b0034dddd72427`, placeBet: `0xcba66646953fbae9cd41c9eda49e6e2b01408525d7b7dbf452be83fc3c0003b0`
+- MKT_19 — createMarket: `0x3fe81b711367ea9a66a0c6a6c4d9cb9c2841ace25cc479c3db91ed04c192204c`, placeBet: `0x9396d8d43561558099470671fa7476af23670a0bc5d668b6c746b12fbfe36c24`
+
+Deployer wallet balance after Round 6: 0.861332982797286642 RITUAL (nonce 96).
+
 ## Known Issues & Fixes
 
 - `resolveMarket` requires `--gas-limit 2000000` — `cast`'s auto gas estimate is too low because it
