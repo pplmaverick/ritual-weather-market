@@ -62,7 +62,32 @@ test market only) and is not part of this record.
 | MKT_14 | Bangkok, TH | >30.00°C | 2026-07-21 14:00 UTC | 2026-07-21 15:00 UTC |
 | MKT_15 | Seoul, KR | >28.00°C | 2026-07-21 14:00 UTC | 2026-07-21 15:00 UTC |
 
-No bets placed on MKT_12–15 as of 2026-07-16.
+No bets placed on MKT_12–15 as of 2026-07-16. MKT_12–13 stayed zero-bet through their deadline;
+MKT_14–15 received bets and were settled in Round 5 — see below.
+
+### Round 5 Settlement (MKT_12–15, 2026-07-22)
+
+| Market | City | Threshold | Bets (above / below) | Result | Status |
+|---|---|---|---|---|---|
+| MKT_12 | Taipei, TW | >30.00°C | — | Zero bets | ⏭ Skipped |
+| MKT_13 | Tokyo, JP | >28.00°C | — | Zero bets | ⏭ Skipped |
+| MKT_14 | Bangkok, TH | >30.00°C | 0.005 / 0 RITUAL | 35.33°C — ABOVE wins | ✅ Settled |
+| MKT_15 | Seoul, KR | >28.00°C | 0 / 0.007 RITUAL | 29.77°C — ABOVE wins (below bettor refunded) | ✅ Settled |
+
+Transaction hashes:
+- MKT_14 — resolveMarket: `0xfde462451ba70b354614acd530714f0d13e999f1aa295c7f313d45e80ad026d5`, claim: `0x03ccd33feea3f64e2f39847120352b1759696dc08a577ed548c924a4068f34dc`
+- MKT_15 — resolveMarket: `0x8afcadc230a374dee038ec5e30b94f7d822f886da686caa31a762f18497d1618`, claim: `0xa8d8c26089ebf9d25731af4931e3cf96c47bf4a33faf4f88b1f661a2608d5f8e`
+
+## Known Issues & Fixes
+
+- `resolveMarket` requires `--gas-limit 2000000` — `cast`'s auto gas estimate is too low because it
+  simulates the empty-result (first-phase) path, not the full real-data path taken once the TEE has
+  fetched a response.
+- `getMarket` tuple type: `(string,int256,uint256,uint256,uint256,uint256,bool,bool,int256)`
+- `TEEServiceRegistry` correct address: `0x9644e8562cE0Fe12b4deeC4163c064A8862Bf47F`
+  function: `pickServiceByCapability(uint8,bool,uint256,uint256)`
+- Claim function signature is `claim(uint256)`, not `claimWinnings(uint256)`
+- Ritual Chain's `block.timestamp` is in milliseconds, not seconds
 
 ## On-Chain Activity (as of 2026-07-16)
 
