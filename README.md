@@ -97,8 +97,9 @@ This project is not a generic EVM dApp ported to another chain. Every design dec
 
 ## On-Chain Activity
 
-- **Markets created**: 16, across 4 cities (Taipei, Tokyo, Seoul, Bangkok)
-- **Markets settled**: 8 (4 skipped for zero bets, 4 active/pending)
+- **Markets created**: 22, across 4 cities (Taipei, Tokyo, Seoul, Bangkok)
+- **Markets settled**: 14 (6 skipped for zero bets, 2 active/pending)
+- **Deployer wallet tx count (nonce)**: 109
 - **Live frontend**: https://ritual-weather-market.vercel.app
 
 Full per-market breakdown (thresholds, actual temps, payout outcomes) is in [DEPLOYMENT.md](./DEPLOYMENT.md).
@@ -110,7 +111,9 @@ Full per-market breakdown (thresholds, actual temps, payout outcomes) is in [DEP
 | Early tests | MKT_0–3 | Taipei, Tokyo, Seoul | ✅ Settled |
 | Round 2 | MKT_4–7 | Taipei, Tokyo, Seoul, Bangkok | ✅ Settled (2026-07-09) |
 | Round 3 | MKT_8–11 | Taipei, Tokyo, Seoul, Bangkok | ✅ Settled (2026-07-14) |
-| Round 4 | MKT_12–15 | Taipei, Tokyo, Bangkok, Seoul | 🔄 Active — resolves 2026-07-21 |
+| Round 4 | MKT_12–15 | Taipei, Tokyo, Bangkok, Seoul | ✅ Settled (2026-07-22) |
+| Round 6 | MKT_16–19 | Taipei, Tokyo, Bangkok, Seoul | ✅ Settled (2026-07-31) |
+| Round 7 | MKT_20–21 | Taipei, Tokyo | 🔄 Active — resolves 2026-08-14 |
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for the full settlement table.
 

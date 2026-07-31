@@ -97,6 +97,36 @@ Transaction hashes:
 
 Deployer wallet balance after Round 6: 0.861332982797286642 RITUAL (nonce 96).
 
+### Round 6 Settlement (MKT_16–19, 2026-07-31)
+
+| Market | City | Threshold | Bets (above / below) | Result | Status |
+|---|---|---|---|---|---|
+| MKT_16 | Taipei, TW | >30.00°C | 0.001 / 0 RITUAL | 29.16°C — BELOW wins (above bettor refunded) | ✅ Settled |
+| MKT_17 | Tokyo, JP | >28.00°C | 0.001 / 0 RITUAL | 32.23°C — ABOVE wins | ✅ Settled |
+| MKT_18 | Bangkok, TH | >32.00°C | 0.001 / 0 RITUAL | 26.34°C — BELOW wins (above bettor refunded) | ✅ Settled |
+| MKT_19 | Seoul, KR | >28.00°C | 0.001 / 0 RITUAL | 30.34°C — ABOVE wins | ✅ Settled |
+
+Transaction hashes:
+- MKT_16 — resolveMarket: `0x8a4c5abe8d966f5a3694be1273a075cabc8f25336dcd197036a6a19f62a0ab8d`, claim: `0x62e32ddf1fa17dd675c0255cdbec085815d7b7feeae5a00ef17273eb925f33f5`
+- MKT_17 — resolveMarket: `0xaad8d2aaee29443746ab94bdc358b757828c0d435d330ef3eb33bf6250ae5588`, claim: `0x0abd6d74e50ac021341f3078e534e2f217d3c43dcf4a60b0eea761427617b03b`
+- MKT_18 — resolveMarket: `0x5ef919035fefe41baf80fe2b4b63eaba5585fbc2f4795b791330cbd523fc4799`, claim: `0x446e3cdf1b6b732386a43d80dd1290805abcc0bbcf99d1b7203a00544ba6f9f2`
+- MKT_19 — resolveMarket: `0xe29efe06405710edb9c3cd1cd4c86a4e2dfd44b4d967f5d08136f0bf8001717a`, claim: `0xfe541f51ba9fccd37b270272af0f8c13824576f65c1183af953bd0e83010bf90`
+
+### Round 7 Markets (MKT_20–21, created 2026-07-31)
+
+| Market | City | Threshold | bettingDeadline | resolutionTime |
+|---|---|---|---|---|
+| MKT_20 | Taipei, TW | >33.00°C | 2026-08-14 14:00 UTC | 2026-08-14 15:00 UTC |
+| MKT_21 | Tokyo, JP | >33.00°C | 2026-08-14 14:00 UTC | 2026-08-14 15:00 UTC |
+
+Each market seeded with one 0.001 RITUAL "above" bet from the deployer wallet.
+
+Transaction hashes:
+- MKT_20 — createMarket: `0x7d8f2576f08ce370315e77d50be2793581716bbfdc6bf044e166ea1f83d86eb6`, placeBet: `0x97bcf7add66dbd59b4e640f225dc2bee1e489eec578e2c7a8f1818285a93f65b`
+- MKT_21 — createMarket: `0x7f1278c3b22c37c8596b4b2f690fe2b336ce2519a0a864ac9d666de2e7141ba4`, placeBet: `0x77e92c8d82fe3b8add7181c095b423519043be77b175cf237daed386b3487ba6`
+
+Deployer wallet balance after Round 7: 0.859963373759998727 RITUAL (nonce 109).
+
 ## Known Issues & Fixes
 
 - `resolveMarket` requires `--gas-limit 2000000` — `cast`'s auto gas estimate is too low because it
