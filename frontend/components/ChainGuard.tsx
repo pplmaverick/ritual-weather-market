@@ -1,18 +1,26 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { useAccount, useSwitchChain } from "wagmi";
 import { ritualChain } from "@/lib/chain";
 
 export function ChainGuard({ children }: { children: React.ReactNode }) {
   const { chain, isConnected } = useAccount();
   const { switchChain, isPending } = useSwitchChain();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <>{children}</>;
 
   if (isConnected && chain?.id !== ritualChain.id) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
         <div className="text-3xl text-ritual-yellow">&#9888;</div>
         <p className="text-ritual-muted text-sm">
-          WRONG_NETWORK: connected to <span className="text-ritual-text">{chain?.name}</span>.
+          WRONG_NETWORK: connected to{" "}
+          <span className="text-ritual-text">{chain?.name ?? "unknown chain"}</span>.
           Switch to Ritual Chain to use this terminal.
         </p>
         <button
