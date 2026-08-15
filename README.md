@@ -113,7 +113,7 @@ Full per-market breakdown (thresholds, actual temps, payout outcomes) is in [DEP
 | Round 3 | MKT_8–11 | Taipei, Tokyo, Seoul, Bangkok | ✅ Settled (2026-07-14) |
 | Round 4 | MKT_12–15 | Taipei, Tokyo, Bangkok, Seoul | ✅ Settled (2026-07-22) |
 | Round 6 | MKT_16–19 | Taipei, Tokyo, Bangkok, Seoul | ✅ Settled (2026-07-31) |
-| Round 7 | MKT_20–21 | Taipei, Tokyo | 🔄 Active — resolves 2026-08-14 |
+| Round 7 | MKT_20–21 | Taipei, Tokyo | ⏳ Awaiting mainnet migration |
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for the full settlement table.
 
@@ -435,6 +435,7 @@ The source code submitted must match the **deployed bytecode** exactly. If the l
 - ECIES secret injection for API key (key encrypted on-chain, decrypted only inside TEE)
 - Security audit
 - Mainnet deployment
+- Testnet offline as of 2026-08-14; mainnet deployment pending official RPC announcement
 
 ---
 

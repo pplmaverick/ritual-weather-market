@@ -127,6 +127,18 @@ Transaction hashes:
 
 Deployer wallet balance after Round 7: 0.859963373759998727 RITUAL (nonce 109).
 
+### Round 7 Settlement (2026-08-14)
+
+Status: TESTNET OUTAGE - Could not execute on-chain settlement
+RPC rpc.ritualfoundation.org unreachable; block explorer also down.
+Likely cause: Ritual testnet permanently shut down ahead of mainnet launch.
+
+Weather Results (Open-Meteo Archive, 2026-08-14 max temp):
+- MKT_20 Taipei >33°C: actual 34.5°C → ABOVE wins (our bet: ABOVE → claimable, pending mainnet)
+- MKT_21 Tokyo >33°C: actual 29.6°C → BELOW wins (our bet: ABOVE → no claim)
+
+Pending: resolveMarket + claim MKT_20 to be executed once mainnet RPC is available.
+
 ## Known Issues & Fixes
 
 - `resolveMarket` requires `--gas-limit 2000000` — `cast`'s auto gas estimate is too low because it
